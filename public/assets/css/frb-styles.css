@@ -18,9 +18,85 @@
 transition: transform .3s ease,-webkit-transform .3s ease;
 }
 
-.carousel-caption {
+.carousel-caption { 
     color:black;
     background-color:lightgray;
     bottom: 5rem;
     z-index: 10;
+    padding:10px;
   }
+
+.main{
+    margin-top:10%;
+}
+
+.navbar-expand-md {
+    justify-content: space-evenly;
+}
+
+.profile-pic{
+    width:30px;
+    margin-right: 5px;
+}
+
+.recipes-section{
+    background: url(../images/AdobeStock_195323939.jpeg) repeat;
+    background-size: contain;
+}
+
+
+@media screen and (max-width: 768px) {
+   
+    .carousel-caption {
+        bottom: 3.5rem;
+      }
+
+    .carousel-caption h3{
+        font-size: 15px;
+    }
+
+    .navbar h2{
+        font-size: 20px;
+    }
+
+    .navbar-expand-md {
+        justify-content: space-between;
+    }
+       
+}
+
+
+@media screen and (max-width: 576px) {
+   
+    .carousel-caption {
+        bottom: 3.5rem;
+      }
+
+    .carousel-caption h3{
+        font-size: 15px;
+    }
+
+    .navbar h2{
+        font-size: 15px;
+    }
+
+    .navbar-expand-md {
+        justify-content: space-between;
+    }
+       
+}
+
+@media screen and (max-width: 500px) {
+
+    .navbar-expand-md {
+        justify-content: space-between;
+    }
+    
+     .navbar h2{
+            font-size: 12px;
+        }
+    
+    }
+      
+
+  
