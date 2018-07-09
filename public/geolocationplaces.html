@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script
+        
+        
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <form>
+            <input id="textSearch" type="text" placeholder="Location">
+            <input id="submission" type="submit" value="Click Here">
+        </form>
+
+       
+
+
+        
+        <div class="mainSearch"></div>
+
+            <div class="container">
+
+                <div class="row1"></div>
+                        <!-- <div class="col-sm-12 col-med-6 col-xl-6"> -->
+                            <iframe id="maps"
+                                width="600"
+                                height="450"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD6nGAQs7IK04Sf-TqRpmQKWBmUEYXBMck
+                                &q=Space+Needle,Seattle+WA" allowfullscreen>
+                            </iframe>
+                </div>
+
+
+                <div class="row2">
+                        <!-- <div class="col-sm-12 col-med-6 col-xl-6"> -->
+                            <h1 id="Stores">Grocery Stores Near By!</h1>
+                            <div class="groceryStores"></div>
+                </div>        
+            </div>   
+                
+                
+                
+            
+        </div> 
+
+        <script>
+
+
+
+        $("#submission").on("click" , function(){
+            event.preventDefault();
+
+            var searching= "https://www.google.com/maps/embed/v1/place?key=AIzaSyD6nGAQs7IK04Sf-TqRpmQKWBmUEYXBMck&q=" + $("#textSearch").val();
+            $("#maps").attr("src",searching)
+            $(".groceryStores").push(searching.value);
+            console.log(searching.value);
+            
+            
+           
+            
+            
+        }); 
+        // var locationsArray = [];
+
+        // for (var i = 0; i <50; i++) {
+        //     var latLng = new google.maps.latLng(sarching.latitude, searching.longitude);
+        //     console.log(latLng);
+
+        
+
+
+        </script> 
+    </div>
+
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- // var x = document.getElementById("demo");
+
+        // function getLocation() {
+        //     if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(showPosition);
+            
+
+        //     } else { 
+        //         x.innerHTML = "Geolocation is not supported by this browser.";
+        //     }
+        // }
+
+        // function showPosition(position) {
+            
+            
+        //     x.innerHTML = "Latitude: " + position.coords.latitude + 
+        //     "<br>Longitude: " + position.coords.longitude;
+        //     var srcLocation = "'https://www.google.com/maps/embed/v1/place?key=AIzaSyD6nGAQs7IK04Sf-TqRpmQKWBmUEYXBMck'" +  "&location=" + position.coords.latitude + "," + position.coords.longitude;
+
+        //     $("#maps").val(src, srcLocation);
+        // } -->
