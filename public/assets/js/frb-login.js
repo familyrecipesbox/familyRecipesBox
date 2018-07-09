@@ -7,14 +7,33 @@
               const user=result.user;
               sessionStorage.setItem("uid",user.uid);
               sessionStorage.setItem("name",user.displayName);
+              sessionStorage.setItem("pp",user.photoURL);
+               // Code for handling the push
+            database.ref("users").push({
+                "id": user.uid,
+                "fullName": user.displayName,
+                "email":user.email,
+                "photoURL":user.photoURL,
+                "providerId":"google.com",
+                "dateAdded": firebase.database.ServerValue.TIMESTAMP
+            });
               window.location = 'recipes.html';
-              //document.write("Hello! "+user.displayName);
               console.log(user);
 
-          }).catch(
-              console.log()
+          }).catch(function(error){
+            console.log("error"+error);          }
+              
           )
       }
+
+      firebase.auth().signInAnonymously().catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        
+      });
+
+
 
       function logout(){
         firebase.auth().signOut().then(function() {
