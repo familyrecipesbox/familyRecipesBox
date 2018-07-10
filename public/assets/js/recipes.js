@@ -45,12 +45,23 @@ $("#add-recipe").on("click", function (event) {
                 "dateAdded": firebase.database.ServerValue.TIMESTAMP,
                 "dateUpdated": ""
             });
+            clear();
+            swal("Looks yum!", "Added recipe to your box!!", "success");
         });
 
     });
 
 
 });
+
+
+function clear(){
+    $("#name").val("");
+    $("#pic").val("");
+    $("#cuisines").val("");
+    $("#categories").val("");
+    $("#notes").val("");
+}
 
 $(document).ready(function () {
     database.ref("cuisines").once("value", function (snapshot) {
