@@ -11,8 +11,13 @@
   margin-left: 0px;
 }
 
-.notes {
-  margin-top: 50px;
+.col-auto {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.recipes-card {
+  margin-top: 150px;
 }
 
 /* ------------ Footer ------------ */
@@ -59,10 +64,11 @@ footer p {
 
 /* Recipes Detail page
 =================================================*/
+
 .ingredients-list {
-  width: 25rem;
+  width: 100%;
 }
 
 .notes {
-  margin-top: 5%;
+  margin-top: 50px;
 }
