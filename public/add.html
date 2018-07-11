@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/frb-styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
         crossorigin="anonymous">
-
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicon.ico/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicon.ico/apple-icon-72x72.png">
@@ -54,9 +54,12 @@
                     if (sessionStorage.getItem("name") != undefined) {
                         document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>");
                         document.write(sessionStorage.getItem("name"));
+                        document.write("&nbsp;<a href='#' onclick='logout();'>Logout</a>");
+                    } else {
+                        window.location = "index.html";
                     }
-                </script> &nbsp;
-                <a href="#" onclick="logout();">Logout</a>
+                </script>
+
             </div>
         </nav>
     </header>
@@ -78,23 +81,28 @@
 
                                     <label for="pic">Picture </label>
                                     <input type="file" class="form-control" id="pic">
+                                    <progress value="0" id="uploader" max="100" class="uploader">0%</progress>
                                 </div>
                                 <div class="form-group">
                                     <label for="cuisines">Cuisine *</label>
                                     <select class="form-control" id="cuisines">
-                                            <option id="">Please select</option>
+                                        <option id="">Please select</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="categories">Category *</label>
                                     <select class="form-control" id="categories">
-                                            <option id="">Please select</option>
+                                        <option id="">Please select</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                        
-                                        <label for="notes">Recipe Instructions *</label>
-                                        <textarea class="form-control" id="notes" cols="50" rows="25"></textarea>
+
+                                    <label for="notes">Recipe Instructions *</label>
+                                    <input id="notes" type="hidden">
+                                    <div id="editor">
                                     </div>
+                                </div>
                                 <button type="submit" id="add-recipe" class="btn btn-primary">Submit</button>
 
                             </div>
@@ -103,13 +111,10 @@
                 </div>
             </div>
         </div>
-    
 
-    <!-- FOOTER -->
-    <footer class="container">
-        <p>&copy;MRB</p>
-    </footer>
-</main>
+
+      
+    </main>
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -128,14 +133,14 @@
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-storage.js"></script>
 
     <script src="assets/js/firebase-config.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <script src="assets/js/frb-login.js"></script>
 
     <!-- Temporary Image Holders -->
     <script src="assets/js/holder.min.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="assets/js/recipes.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
 
 </body>
 

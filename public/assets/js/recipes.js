@@ -1,24 +1,36 @@
+
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+
+
 $("#add-recipe").on("click", function (event) {
     const id = sessionStorage.getItem("uid");
     event.preventDefault();
     let recipe = new Object();
 
+    const metadata={
+        contentType:"image/jpeg"
+    };
     recipe.name = $("#name").val().trim();
-    recipe.pic = $("#pic").val();
+    recipe.pic = document.getElementById("pic").files[0];
     recipe.cuisine = $("#cuisines").val();
     recipe.category = $("#categories").val();
+    var notes = $('#notes');
+    notes.val( JSON.stringify(quill.getContents()));
     recipe.notes = $("#notes").val();
-    let file = new File([''], recipe.pic, { "type": "image/jpeg" });
-    var fileName = recipe.pic.substring(recipe.pic.lastIndexOf('\\') + 1);
-    console.log(fileName);
-
-    let uploadTask = storage.ref("images/" + id + "/" + fileName).put(file);
+    let file = new File([recipe.pic], recipe.pic, { "type": "image/jpeg" });
+    var fileName = document.getElementById("pic").files[0].name;
+    console.log(document.getElementById("pic").files[0]);
+    console.log(file);
+    let uploadTask = storage.ref("images/" + id + "/" + fileName).put(file,metadata);
     let url = "";
     uploadTask.on('state_changed', function (snapshot) {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
+        $("#uploader").val(progress);
         switch (snapshot.state) {
             case firebase.storage.TaskState.PAUSED: // or 'paused'
                 console.log('Upload is paused');
@@ -61,17 +73,19 @@ function clear(){
     $("#cuisines").val("");
     $("#categories").val("");
     $("#notes").val("");
+   quill.setContents("");
+    $("#uploader").val(0);
 }
 
 $(document).ready(function () {
     database.ref("cuisines").once("value", function (snapshot) {
-        snapshot.forEach((cuisine) => {
+        snapshot.forEach(function(cuisine) {
             let option = $("<option>").html(cuisine.val().name).val(cuisine.val().id);
             $("#cuisines").append(option);
         });
     });
     database.ref("categories").once("value", function (snapshot) {
-        snapshot.forEach((category) => {
+        snapshot.forEach(function(category) {
             let option = $("<option>").html(category.val().name).val(category.val().id);
             $("#categories").append(option);
         });

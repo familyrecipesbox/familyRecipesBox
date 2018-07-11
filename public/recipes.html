@@ -37,7 +37,7 @@
 
   <header>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.html" onclick="logout();">
         <img src="assets/images/logo/small_logo_t.png" alt="Family Recipes Box" width="100" height="75">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -55,9 +55,12 @@
           if (sessionStorage.getItem("name") != undefined) {
             document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>");
             document.write(sessionStorage.getItem("name"));
+            document.write("&nbsp;<a href='#' onclick='logout();'>Logout</a>");
+          }else{
+            window.location="index.html";
           }
-        </script> &nbsp;
-        <a href="#" onclick="logout();">Logout</a>
+        </script> 
+       
       </div>
     </nav>
   </header>
@@ -67,7 +70,8 @@
     <section class="jumbotron text-center recipes-section">
 
     </section>
-
+    
+    
     <div class="album py-5 bg-light">
       <div class="container">
 
@@ -104,7 +108,10 @@
       <!-- container -->
     </div>
     <!-- album -->
-
+    <section class="bg-light">
+        <h2>Nearby Grocery stores:</h2>
+        <div id="map" style="height: 300px;"></div>
+      </section>
   </main>
 
   <!-- FOOTER -->
@@ -130,12 +137,13 @@
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-storage.js"></script>
 
   <script src="assets/js/firebase-config.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
   <script src="assets/js/frb-login.js"></script>
 
   <!-- Temporary Image Holders -->
   <script src="assets/js/holder.min.js"></script>
+  <script  src="assets/js/geolocations.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6nGAQs7IK04Sf-TqRpmQKWBmUEYXBMck&callback=getLocation"></script>
+
 </body>
 
 </html>

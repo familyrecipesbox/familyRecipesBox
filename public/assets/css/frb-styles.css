@@ -48,6 +48,14 @@ transition: transform .3s ease,-webkit-transform .3s ease;
     background-size: contain;
 }
 
+.uploader{
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+#editor{
+    height: 375px;
+}
 
 @media screen and (max-width: 768px) {
    
