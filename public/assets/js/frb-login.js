@@ -3,7 +3,7 @@
 function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
-        .then(result => {
+        .then(function(result)  {
             const user = result.user;
             const id = user.uid;
             sessionStorage.setItem("uid", user.uid);
@@ -56,7 +56,7 @@ function logout() {
         database.ref("users/" + id).update({
             "logoutTime": firebase.database.ServerValue.TIMESTAMP
         });
-
+        sessionStorage.clear();
         window.location = "index.html";
     }).catch(function (error) {
         // An error happened.
