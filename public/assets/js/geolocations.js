@@ -42,7 +42,7 @@ function showPosition(position) {
             marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
-                title: format(location.name),
+                title: location.name,
                 icon: pinSymbol("green")
             });
         });
