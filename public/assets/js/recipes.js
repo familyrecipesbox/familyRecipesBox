@@ -76,6 +76,15 @@ $("#add-recipe").on("click", function (event) {
     var notes = $('#notes');
     notes.val(JSON.stringify(quill.getContents()));
     recipe.notes = $("#notes").val();
+    recipe.ingredients=[];
+
+    for(var i=1;i<ingIndex;i++){
+        let ingredient={};
+        ingredient.name=$("#"+"ing"+i+"-name").val();
+        ingredient.quantity=$("#"+"ing"+i+"-quantity").val();
+        console.log(ingredient);
+        recipe.ingredients.push(JSON.stringify(ingredient));
+    }
 
     if (validate($("#name")) && validate($("#notes"))) {
         // Code for handling the push
@@ -84,6 +93,7 @@ $("#add-recipe").on("click", function (event) {
             "cuisine": recipe.cuisine,
             "pic": recipe.url,
             "category": recipe.category,
+            "ingredients":recipe.ingredients,
             "notes": recipe.notes,
             "dateAdded": firebase.database.ServerValue.TIMESTAMP,
             "dateUpdated": ""
