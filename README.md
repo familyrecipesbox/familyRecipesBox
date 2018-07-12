@@ -32,7 +32,7 @@ We are planning on doing the below user stories for this project.
 ## Add/ Edit a recipe
 - User will be given choices for cuisines, categories, quantities, if not listed other.
 
-###Cuisines
+### Cuisines
 * Chinese
 * Indian
 * Italian
