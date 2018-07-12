@@ -45,7 +45,7 @@ $(document).on("click", ".view-btn", ()=> {
     console.log(this);
     var recipeName = $(this).attr("data-name");
     console.log(recipeName);
-    var url = new URL("http://recipes.html?recipeName=" + recipeName);
+    var url = new URL("http://recipe-details.html?recipeName=" + recipeName);
     window.location.href = url;
 });
 
