@@ -1,7 +1,7 @@
 //function for display recipe list
 const id = sessionStorage.getItem("uid");
 function displayRecipesList() {
-    database.ref("users/" + id + "/recipes").on("value", (snapshot) => {
+    database.ref("users/" + id + "/recipes").once("value", (snapshot) => {
 
         //Conditional for validating userid
         snapshot.forEach((recipe) => {
