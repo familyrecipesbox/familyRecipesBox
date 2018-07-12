@@ -54,7 +54,17 @@ transition: transform .3s ease,-webkit-transform .3s ease;
 }
 
 #editor{
-    height: 375px;
+    height: 250px;
+}
+
+.form-row-margin{
+    margin-top: 10px;
+}
+
+.quantity{
+    display: inline-block;
+    width: 30%;
+    margin:5px;
 }
 
 @media screen and (max-width: 768px) {
