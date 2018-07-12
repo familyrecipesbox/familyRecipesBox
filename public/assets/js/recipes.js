@@ -106,7 +106,8 @@ function validate(element) {
     }
 }
 
-function clear() {
+//function for clearing input after adding recipes
+function clear(){
     $("#name").val("");
     $("#pic").val("");
     $("#cuisines").val("");
@@ -128,6 +129,8 @@ function loadQuantities(elementId) {
     });
 }
 
+
+
 $(document).ready(function () {
    //Hiding validation error divs
     $(".error").hide();
@@ -144,10 +147,51 @@ $(document).ready(function () {
             $("#categories").append(option);
         });
     });
-    /*database.ref("quantities").once("value", function (snapshot) {
-        snapshot.forEach(function (quantity) {
-            let option = $("<option>").html(quantity.val().name).val(quantity.val().id);
-            $("#ing1-quantity").append(option);
-        });
-    });*/
 });
+
+//function for display recipe list
+
+function displayRecipesList () {
+    database.ref("users").on("value", (snapshot) => {
+        snapshot.forEach((user) => {
+            const userId = user.val();
+            const uid = sessionStorage.getItem("uid");
+            const recipes = userId.recipes;
+            if (userId === uid) {
+                //Conditional for validating userid
+                recipes.forEach((recipe) => {
+                    const recipesList = $('#recipesList');
+                    const colDiv = $("<div>").addClass("col-md-4");
+                    const cardDiv = $("<div>").addClass("card mb-4 box-shadow");
+                    const img = $("<img>").addClass("card-img-top");
+                    img.attr("src", recipe.pic);
+                    const cardBodyDiv = $("<div>").addClass("card-body");
+                    const cardTextP = $("<p>").text(recipe.name);
+                    const dFlexDiv = $("<div>").addClass("d-flex justify-content-between align-items-center");
+                    const btnDiv = $("<div>").addClass("btn-group");
+                    const viewBtn = $("<button>").addClass("view-btn btn btn-sm btn-outline-secondary");
+                    viewBtn.attr("type", "button");
+                    viewBtn.text("View");
+                    const editBtn = $("<button>").addClass("edit-btn btn btn-sm btn-outline-secondary");
+                    viewBtn.attr("type", "button");
+                    viewBtn.text("Edit");
+                    const small = $("<small>").addClass("text-muted");
+                    const span = $("<span>").addClass("date-added");
+                    var dateAdded = moment.unix(recipe.dateAdded);
+                    span.text(dateAdded);
+                    //Append starting from inside out
+                    small.append(span);
+                    btnDiv.append(viewBtn, editBtn);
+                    dFlexDiv.append(btnDiv, small);
+                    cardBodyDiv.append(cardTextP, dFlexDiv);
+                    cardDiv.append(img, cardBodyDiv);
+                    colDiv.append(cardDiv);
+                    recipesList.append(colDiv);
+                });
+            } else {
+                alert("User's recipes list does not exist");
+                logout();
+            }
+        });
+    });
+};
