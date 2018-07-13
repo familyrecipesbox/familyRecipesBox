@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/frb-styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicon.ico/apple-icon-60x60.png">
@@ -37,16 +38,33 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
             <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo/small_logo_t.png" alt="Family Recipes Box" width="100" height="75">
+                <img src="assets/images/logo/small_logo_t.png" alt="Family Recipes Box" title="Family Recipes Box" width="100" height="75">
             </a>
-            <h2>Family Recipes Box</h2>
-            <div>
-                <button type="button" class="btn btn-outline-dark my-2 my-sm-0" onclick="googleLogin();">Login</button>
-            </div>
+            <h3>Family&nbsp;Recipes&nbsp;Box</h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                                <div id="customBtn" class="customGPlusSignIn" onclick="googleLogin();">
+                                        <span class="icon"></span>
+                                        <span class="buttonText">Login</span>
+                                    </div>
+                        </li>
+                        
+                    </ul>
+
+                </div>
+           
+
         </nav>
     </header>
 
-    <main role="main" >
+    <main role="main">
         <div class="container-fluid main">
             <div class="row">
                 <div class="col-lg-6">
@@ -62,7 +80,7 @@
                                 <img class="first-slide" src="assets/images/AdobeStock_27945373.jpeg" alt="First slide">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h6>Dad bakes the best cakes?</h6>
+                                        <p class="need">Dad bakes the best cakes?</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +88,7 @@
                                 <img class="second-slide" src="assets/images/AdobeStock_136046566.jpeg" alt="Second slide">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h6>Why doesn't my soup taste like my Mom's? </h6>
+                                        <p class="need">Why doesn't my soup taste like my Mom's? </p>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +96,7 @@
                                 <img class="third-slide" src="assets/images/AdobeStock_163157305.jpeg" alt="Third slide">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h6>Kids love Grandma's Mac n Cheese?</h6>
+                                        <p class="need">Kids love Grandma's Mac n Cheese?</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +104,7 @@
                                 <img class="fourth-slide" src="assets/images/AdobeStock_87865858.jpeg" alt="Fourth slide">
                                 <div class="container">
                                     <div class="carousel-caption text-center">
-                                        <h6>Do you want to preserve your traditional family recipes?</h6>
+                                        <p class="need">Do you want to preserve your traditional family recipes?</p>
                                     </div>
                                 </div>
                             </div>
