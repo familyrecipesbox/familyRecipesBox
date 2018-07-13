@@ -50,7 +50,7 @@
 
                     </li>
                 </ul>
-                <script>
+                <!-- <script>
                     if (sessionStorage.getItem("name") != undefined) {
                         document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>");
                         document.write(sessionStorage.getItem("name"));
@@ -58,7 +58,7 @@
                     } else {
                         window.location = "index.html";
                     }
-                </script>
+                </script> -->
             </div>
         </nav>
     </header>
@@ -69,7 +69,7 @@
             <div class="card recipes-card">
                 <div class="card-header row">
                     <div class="col-auto mr-auto">
-                        <h2 id="recipe-name">Macaroni and Cheese</h2>
+                        <h2 id="recipe-name"></h2>
                     </div>
                     <!-- Placeholder: Edit Button -->
                     <div class="col-auto">
@@ -88,49 +88,18 @@
                                 </div>
                             </div>
                             <!-- Text are placeholders. Use id names for reference call from Firebase -->
-                            <div class="card ingredients-list">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">1 package</span>
-                                            <span id="ingredients">macaroni</span>
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">1/4 cup</span>
-                                            <span id="ingredients">butter</span>
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">3 cup</span>
-                                            <span id="ingredients">milk</span>
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">3 cup</span>
-                                            <span id="ingredients">shredded sharp cheddar cheese</span>
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">1 teaspoon</span>
-                                            <span id="ingredients">salt</span>
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <p>
-                                            <span id="quantity">1 teaspoon</span>
-                                            <span id="ingredients">salt</span>
-                                        </p>
-                                    </li>
+                            <div class="card">
+                                <ul class="ingredients-list list-group list-group-flush">
+                                    <!-- output ingredient from Firebase -->
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-7 order-sm-1 order-md-2 mt-sm-3 mt-md-0">
-                            <img class="card-img" src="https://images-gmi-pmc.edge-generalmills.com/c41ffe09-8520-4d29-9b4d-c1d63da3fae6.jpg">
+                            <div class="tags">
+                                <button type="button" class="btn btn-outline-success">Cuisine: <span id="cuisine"></span></button>
+                                <button type="button" class="btn btn-outline-warning">Category <span id="category"></span></button>
+                            </div>
+                            <img class="card-img recipe-img" src="https://images-gmi-pmc.edge-generalmills.com/c41ffe09-8520-4d29-9b4d-c1d63da3fae6.jpg">
                         </div>
                     </div>
                     <!-- row -->
@@ -182,6 +151,8 @@
 
     <!-- Temporary Image Holders -->
     <script src="assets/js/holder.min.js"></script>
+    
+    <script src="assets/js/list.js"></script>
 </body>
 
 </html>
