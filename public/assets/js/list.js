@@ -59,16 +59,17 @@ function displayRecipeDetail() {
         $("#cuisine").text(recipeDetails.cuisine);
         $("#category").text(recipeDetails.category);
         $(".card-img").attr("src", recipeDetails.pic);
-        // var notes = quill.getText(recipeDetails.notes);
-        $("#notes").text(recipeDetails.notes);
+        var tempCont = document.createElement("div");
+        (new Quill(tempCont)).setContents(JSON.parse(recipeDetails.notes).ops);
+        $("#notes").html(tempCont.getElementsByClassName("ql-editor")[0].innerHTML);
 
         recipeDetails.ingredients.forEach(ingredient => {
             var ingredientList = $(".ingredients-list");
             var li = $("<li>").addClass("list-group-item");
             var p = $("<p>");
             var spanIngredient = $("<span>").attr("id", "ingredient");
-            // var quillIng = quill.getText(ingredient);
-            spanIngredient.text(ingredient);
+            var ing=JSON.parse(ingredient);
+            spanIngredient.text(ing.name +" "+ing.quantity);
 
             p.append(spanIngredient);
             li.append(p);
