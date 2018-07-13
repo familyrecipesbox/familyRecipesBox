@@ -2,6 +2,11 @@
 <html>
 
 <head>
+  <script>
+    if (sessionStorage.getItem("name") == undefined) {
+      window.location = "index.html";
+    }
+  </script>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Family Recipes Box</title>
@@ -41,22 +46,34 @@
         <img src="assets/images/logo/small_logo_t.png" alt="Family Recipes Box" width="100" height="75">
       </a>
       <h3>Family&nbsp;Recipes&nbsp;Box</h3>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#frb-navbar" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="frb-navbar">
         <ul class="navbar-nav ml-auto">
-          <script>
-            if (sessionStorage.getItem("name") != undefined) {
-              document.write("<li class='nav-item'><img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'></li>");
-              document.write(sessionStorage.getItem("name"));
-              document.write("<li class='nav-item'>&nbsp;<a href='#' onclick='logout();'>Logout</a></li>");
-            } else {
-              window.location = "index.html";
-            }
-          </script>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <script>
+                if (sessionStorage.getItem("name") != undefined) {
+                  document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>" + sessionStorage.getItem("name"));
+                } 
+              </script>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <script>
+                if (sessionStorage.getItem("name") != undefined) {
+                  document.write("<a class='dropdown-item' href='recipes.html'>My Recipes</a>");
+                  document.write("<a class='dropdown-item' href='add.html'>Add Recipe</a>");
+                  document.write("<div class='dropdown-divider'></div>");
+                  document.write("<a class='dropdown-item' href='#' onclick='logout();'>Logout</a>");
+                }
+              </script>
+            </div>
+          </li>
         </ul>
       </div>
     </nav>
@@ -70,7 +87,7 @@
 
 
     <div class="album py-5 bg-light">
-      <div class="container">
+      <div class="container-fluid">
 
         <div id="recipesList" class="row">
 
@@ -90,22 +107,13 @@
               </div>
             </div>
           </div>-->
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <a href="add.html">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Add Recipe" alt="Card image cap">
-              </a>
-            </div>
-          </div>
-
         </div>
         <!-- row -->
       </div>
       <!-- container -->
     </div>
     <!-- album -->
-    <section class="bg-light">
+    <section class=" container-fluid bg-light">
       <h2>Nearby Grocery stores:</h2>
       <div id="map" style="height: 300px;"></div>
     </section>
@@ -113,7 +121,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
+    <div class="container text-center">
       <span class="text-muted">© Family Recipes Box</span>
     </div>
   </footer>
