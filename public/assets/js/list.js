@@ -41,10 +41,8 @@ function displayRecipesList() {
 };
 
 //Passing the recipe name to the url
-$(document).on("click", ".view-btn", ()=> {
-    console.log(this);
+$(document).on("click", ".view-btn", function() {
     var recipeName = $(this).attr("data-name");
-    console.log(recipeName);
     //var url = new URL("http://recipe-details.html?recipeName=" + recipeName);
     window.location.href = "recipe-details.html?recipeName=" + recipeName;
 });
@@ -53,25 +51,30 @@ $(document).on("click", ".view-btn", ()=> {
 
 function displayRecipeDetail() {
     //grab recipeName from the url
-    let params = new URLSearchParams(queryString.substring(1));
+    let params = (new URL(document.location)).searchParams;
     let query = params.get("recipeName");
-    console.log(query);
     database.ref("users/" + id + "/recipes/" + query).once("value", (snapshot) => {
         var recipeDetails = snapshot.val();
         $("#recipe-name").text(recipeDetails.name);
+        $("#cuisine").text(recipeDetails.cuisine);
+        $("#category").text(recipeDetails.category);
         $(".card-img").attr("src", recipeDetails.pic);
-        $("#notes").text(recipeDetails.notes); // Will return as string. 
+        // var notes = quill.getText(recipeDetails.notes);
+        $("#notes").text(recipeDetails.notes);
 
         recipeDetails.ingredients.forEach(ingredient => {
-            var ingredientList = $(".ingredient-list");
+            var ingredientList = $(".ingredients-list");
             var li = $("<li>").addClass("list-group-item");
             var p = $("<p>");
-            var spanQty = $("<span>").attr("id", "quantity");
             var spanIngredient = $("<span>").attr("id", "ingredient");
+            // var quillIng = quill.getText(ingredient);
+            spanIngredient.text(ingredient);
 
-            p.append(spanQty, spanIngredient);
+            p.append(spanIngredient);
             li.append(p);
             ingredientList.append(li);  
         });
     });
 };
+
+displayRecipeDetail();
