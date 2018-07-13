@@ -40,27 +40,24 @@
       <a class="navbar-brand" href="index.html" onclick="logout();">
         <img src="assets/images/logo/small_logo_t.png" alt="Family Recipes Box" width="100" height="75">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      <h3>Family&nbsp;Recipes&nbsp;Box</h3>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
 
-          </li>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <script>
+            if (sessionStorage.getItem("name") != undefined) {
+              document.write("<li class='nav-item'><img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'></li>");
+              document.write(sessionStorage.getItem("name"));
+              document.write("<li class='nav-item'>&nbsp;<a href='#' onclick='logout();'>Logout</a></li>");
+            } else {
+              window.location = "index.html";
+            }
+          </script>
         </ul>
-
-        <script>
-          if (sessionStorage.getItem("name") != undefined) {
-            document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>");
-            document.write(sessionStorage.getItem("name"));
-            document.write("&nbsp;<a href='#' onclick='logout();'>Logout</a>");
-          }else{
-            window.location="index.html";
-          }
-        </script> 
-       
       </div>
     </nav>
   </header>
@@ -70,15 +67,15 @@
     <section class="jumbotron text-center recipes-section">
 
     </section>
-    
-    
+
+
     <div class="album py-5 bg-light">
       <div class="container">
 
         <div id="recipesList" class="row">
 
           <!-- Do not delete below. Follow this structure for dynamic display of data -->
-         <!-- <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="card mb-4 box-shadow">
               <img class="card-img-top" data-src="holder.js/100px225?theme=sky&text=Macaroni and Cheese" alt="Card image cap">
               <div class="card-body">
@@ -109,16 +106,16 @@
     </div>
     <!-- album -->
     <section class="bg-light">
-        <h2>Nearby Grocery stores:</h2>
-        <div id="map" style="height: 300px;"></div>
-      </section>
+      <h2>Nearby Grocery stores:</h2>
+      <div id="map" style="height: 300px;"></div>
+    </section>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-      <div class="container">
-          <span class="text-muted">© Family Recipes Box</span>
-      </div>
+    <div class="container">
+      <span class="text-muted">© Family Recipes Box</span>
+    </div>
   </footer>
 
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -141,7 +138,7 @@
   <script src="assets/js/firebase-config.js"></script>
   <script src="assets/js/frb-login.js"></script>
 
-  <script  src="assets/js/geolocations.js"></script>
+  <script src="assets/js/geolocations.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6nGAQs7IK04Sf-TqRpmQKWBmUEYXBMck&callback=getLocation"></script>
 
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -149,11 +146,11 @@
 
   <!-- Temporary Image Holders -->
   <script src="assets/js/holder.min.js"></script>
-  
+
   <script>
-  $(document).ready(function(){
-    displayRecipesList();
-  });
+    $(document).ready(function () {
+      displayRecipesList();
+    });
   </script>
 </body>
 

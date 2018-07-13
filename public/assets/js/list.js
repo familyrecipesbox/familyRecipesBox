@@ -18,7 +18,7 @@ function displayRecipesList() {
             const btnDiv = $("<div>").addClass("btn-group");
             const viewBtn = $("<button>").addClass("view-btn btn btn-sm btn-outline-secondary");
             viewBtn.attr("type", "button");
-            viewBtn.attr("data-name", recipeData);
+            viewBtn.attr("data-name", recipe.key);
             viewBtn.text("View");
             const editBtn = $("<button>").addClass("edit-btn btn btn-sm btn-outline-secondary");
             editBtn.attr("type", "button");
@@ -45,8 +45,8 @@ $(document).on("click", ".view-btn", ()=> {
     console.log(this);
     var recipeName = $(this).attr("data-name");
     console.log(recipeName);
-    var url = new URL("http://recipe-details.html?recipeName=" + recipeName);
-    window.location.href = url;
+    //var url = new URL("http://recipe-details.html?recipeName=" + recipeName);
+    window.location.href = "recipe-details.html?recipeName=" + recipeName;
 });
 
 //function for displaying recipe detail page
