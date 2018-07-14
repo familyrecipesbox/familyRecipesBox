@@ -2,8 +2,13 @@
 <html>
 
 <head>
+    <script>
+        if (sessionStorage.getItem("name") == undefined) {
+            window.location = "index.html";
+        }
+    </script>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
     <title>Family Recipes Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -14,26 +19,26 @@
     <link rel="stylesheet" type="text/css" href="assets/css/recipes.css">
 
     <!-- favicons -->
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon.ico/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon.ico/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon.ico/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.ico/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon.ico/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon.ico/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon.ico/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon.ico/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.ico/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.ico/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.ico/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.ico/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon.ico/manifest.json">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicon.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicon.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicon.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicon.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicon.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicon.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicon.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicon.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon.ico/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon.ico/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.ico/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
 
-<body>
+<body class="bg-light">
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
@@ -44,21 +49,31 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+            <h3>Family&nbsp;Recipes&nbsp;Box</h3>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="frb-navbar">
+                <ul class="navbar-nav ml-auto">
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <script>
+                                if (sessionStorage.getItem("name") != undefined) {
+                                    document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>" + sessionStorage.getItem("name"));
+                                } 
+                            </script>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <script>
+                                if (sessionStorage.getItem("name") != undefined) {
+                                    document.write("<a class='dropdown-item' href='recipes.html'>My Recipes</a>");
+                                    document.write("<a class='dropdown-item' href='add.html'>Add Recipe</a>");
+                                    document.write("<div class='dropdown-divider'></div>");
+                                    document.write("<a class='dropdown-item' href='#' onclick='logout();'>Logout</a>");
+                                }
+                            </script>
+                        </div>
                     </li>
                 </ul>
-                <!-- <script>
-                    if (sessionStorage.getItem("name") != undefined) {
-                        document.write("<img class='profile-pic' src='" + sessionStorage.getItem("pp") + "'>");
-                        document.write(sessionStorage.getItem("name"));
-                        document.write("&nbsp;<a href='#' onclick='logout();'>Logout</a>");
-                    } else {
-                        window.location = "index.html";
-                    }
-                </script> -->
             </div>
         </nav>
     </header>
@@ -73,7 +88,7 @@
                     </div>
                     <!-- Placeholder: Edit Button -->
                     <div class="col-auto">
-                        <button type="button" class="btn btn-info">Edit</button>
+                        <button type="button" class="btn btn-info" id="edit-recipe">Edit</button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -96,8 +111,12 @@
                         </div>
                         <div class="col-md-7 order-sm-1 order-md-2 mt-sm-3 mt-md-0">
                             <div class="tags">
-                                <button type="button" class="btn btn-outline-success">Cuisine: <span id="cuisine"></span></button>
-                                <button type="button" class="btn btn-outline-warning">Category <span id="category"></span></button>
+                                <button type="button" class="btn btn-outline-success">Cuisine:
+                                    <span id="cuisine"></span>
+                                </button>
+                                <button type="button" class="btn btn-outline-warning">Category
+                                    <span id="category"></span>
+                                </button>
                             </div>
                             <img class="card-img recipe-img" src="https://images-gmi-pmc.edge-generalmills.com/c41ffe09-8520-4d29-9b4d-c1d63da3fae6.jpg">
                         </div>
@@ -106,7 +125,7 @@
 
                     <div class="row">
                         <div class="col-12 notes">
-                            <h4>Notes</h4>
+                            <h4>Recipe Instructions</h4>
                             <div class="card">
                                 <div id="notes" class="card-body">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit semper nisl vitae tempor. Curabitur dictum
@@ -123,9 +142,11 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="container">
-        <p>&copy;MRB</p>
-    </footer>
+    <footer class="footer">
+            <div class="container text-center">
+              <span class="text-muted">© Family Recipes Box</span>
+            </div>
+          </footer>
 
     <script src="https://code.jquery.com/jquery.js"></script>
 
@@ -151,8 +172,13 @@
     <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Temporary Image Holders -->
     <script src="assets/js/holder.min.js"></script>
-    
+
     <script src="assets/js/list.js"></script>
+    <script>
+        $(document).ready(function () {
+            displayRecipeDetail();
+        });
+    </script>
 </body>
 
 </html>
