@@ -99,7 +99,7 @@ $(document).on("click", ".share-btn", function () {
                         if (snapshot.val() != null) {
                             console.log("Found user in DB");
                             database.ref("users/" + id + "/recipes/" + recipeName).once("value", (snapshot) => {
-                                database.ref("users/" + value + "/recipes/" + recipeName).set(snapshot.val())
+                                database.ref("users/" + email + "/recipes/" + recipeName).set(snapshot.val())
                                     .then(function () {
                                         swal("Sweet!", "Your family member or friend has access to the recipe now.", "success");
                                     });
