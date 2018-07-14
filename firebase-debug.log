@@ -1,0 +1,32 @@
+[debug] [2018-07-14T12:49:12.311Z] ----------------------------------------------------------------------
+[debug] [2018-07-14T12:49:12.313Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-07-14T12:49:12.313Z] CLI Version:   3.19.3
+[debug] [2018-07-14T12:49:12.313Z] Platform:      darwin
+[debug] [2018-07-14T12:49:12.313Z] Node Version:  v8.11.3
+[debug] [2018-07-14T12:49:12.314Z] Time:          Sat Jul 14 2018 05:49:12 GMT-0700 (PDT)
+[debug] [2018-07-14T12:49:12.314Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-14T12:49:12.323Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-14T12:49:12.323Z] > authorizing via signed-in user
+[debug] [2018-07-14T12:49:12.325Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
+  
+ Sat Jul 14 2018 05:49:12 GMT-0700 (PDT)
+[debug] [2018-07-14T12:49:12.792Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-14T12:49:12.793Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
+  
+ Sat Jul 14 2018 05:49:12 GMT-0700 (PDT)
+[debug] [2018-07-14T12:49:13.376Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-14T12:49:13.377Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/frbox-95742  
+  
+ Sat Jul 14 2018 05:49:13 GMT-0700 (PDT)
+[debug] [2018-07-14T12:49:13.735Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/artawood/Desktop/CodingBootcamp/GitRepo/familyRecipesBox'...
+[info] 
+[debug] [2018-07-14T12:49:13.737Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/631164592713/clients/_:getWebAppConfig  
+  
+ Sat Jul 14 2018 05:49:13 GMT-0700 (PDT)
+[debug] [2018-07-14T12:49:14.179Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
