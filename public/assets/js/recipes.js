@@ -7,20 +7,56 @@ let recipe = {};
 const id = sessionStorage.getItem("uid");
 let ingIndex = 1;
 
-function addIng() {
+function loadRecipe() {
+    let params = (new URL(document.location)).searchParams;
+    recipe.key = params.get("recipeName");
+    database.ref("users/" + id + "/recipes/" + recipe.key).once("value", (snapshot) => {
+        var recipeDetails = snapshot.val();
+        
+        $("#name").val(recipeDetails.name);
+        //$( "select#cuisines option:checked" ).val(recipeDetails.cuisine);
+        $("#cuisines").val(recipeDetails.cuisine);
+
+        $("#categories").val(recipeDetails.category);
+        if (recipeDetails.pic != "") {
+            $("#recipe-pic-placeholder").hide();
+            $("#recipe-pic").show();
+            $("#recipe-pic").attr("src", recipeDetails.pic);
+            recipe.picName = recipeDetails.picName;
+            recipe.url=recipeDetails.pic;
+            if(recipe.picName!=undefined){
+                $("#pic-div").append("<i class='fas fa-trash-alt' id='delete-pic' onclick='deletePic()'></i>");
+            }
+        }
+        quill.setContents(JSON.parse(recipeDetails.notes).ops);
+
+        recipeDetails.ingredients.forEach(ingredient => {
+            var ing = JSON.parse(ingredient);
+            addIng(ing);
+        });
+    });
+}
+
+function addIng(ingredient) {
     let name = "ing" + ingIndex;
     let ingsdiv = $("<div>")
         .addClass("ings");
     let txt = $("<input>")
         .attr("type", "text")
         .attr("id", name + "-name");
+    if (ingredient) {
+        txt.val(ingredient.name);
+    }
     let quantOptions = $("<select>")
         .addClass("form-control quantity")
         .attr("id", name + "-quantity")
-        .html("<option id=''>Please select</option>");
+        .html("<option value=''>Please select</option>");
     ingsdiv.append(txt, quantOptions);
     $("#ing-list").append(ingsdiv);
     loadQuantities(name + "-quantity");
+    if (ingredient) {
+        $("#" + name + "-quantity").text(ingredient.quantity);
+    }
     ingIndex++;
 }
 
@@ -32,8 +68,9 @@ function uploadPic() {
 
     console.log(document.getElementById("pic").files[0]);
     console.log(file);
-    let timestamp=Math.round(+new Date()/1000);
-    let uploadTask = storage.ref("images/" + id + "/" + fileName+timestamp).put(file);
+    let timestamp = Math.round(+new Date() / 1000);
+    recipe.picName = fileName + timestamp;
+    let uploadTask = storage.ref("images/" + id + "/" + fileName + timestamp).put(file);
     recipe.url = "";
 
     uploadTask.on('state_changed', function (snapshot) {
@@ -57,11 +94,28 @@ function uploadPic() {
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             recipe.url = downloadURL;
-            $("#recipe-pic").removeAttr("data-src");
+            $("#recipe-pic-placeholder").hide();
+            $("#recipe-pic").show();
             $("#recipe-pic").attr("src", recipe.url);
+            $("#pic-div").append("<i class='fas fa-trash-alt' id='delete-pic' onclick='deletePic()'></i>");
             console.log('File available at', downloadURL);
         });
     });
+}
+
+function deletePic() {
+    if (recipe.picName != undefined) {
+        storage.ref("images/" + id + "/" + recipe.picName).delete().then(function () {
+            $("#pic").val("");
+            $("#delete-pic").hide();
+            $("#uploader").val(0);
+            $("#recipe-pic").hide();
+            $("#recipe-pic-placeholder").show();
+            swal("Uh-oh wasn't that pretty..", "Removed recipe pic. Capture the best!", "success");
+        }).catch(function (error) {
+            // Uh-oh, an error occurred!
+        });
+    }
 }
 
 $("#add-recipe").on("click", function (event) {
@@ -76,12 +130,12 @@ $("#add-recipe").on("click", function (event) {
     var notes = $('#notes');
     notes.val(JSON.stringify(quill.getContents()));
     recipe.notes = $("#notes").val();
-    recipe.ingredients=[];
+    recipe.ingredients = [];
 
-    for(var i=1;i<ingIndex;i++){
-        let ingredient={};
-        ingredient.name=$("#"+"ing"+i+"-name").val();
-        ingredient.quantity=$("#"+"ing"+i+"-quantity").val();
+    for (var i = 1; i < ingIndex; i++) {
+        let ingredient = {};
+        ingredient.name = $("#" + "ing" + i + "-name").val();
+        ingredient.quantity = $("#" + "ing" + i + "-quantity").val();
         console.log(ingredient);
         recipe.ingredients.push(JSON.stringify(ingredient));
     }
@@ -91,16 +145,63 @@ $("#add-recipe").on("click", function (event) {
         database.ref("users/" + id + "/recipes/" + recipe.name.replace(" ", "")).set({
             "name": recipe.name,
             "cuisine": recipe.cuisine,
+            "picName": recipe.picName,
             "pic": recipe.url,
             "category": recipe.category,
-            "ingredients":recipe.ingredients,
+            "ingredients": recipe.ingredients,
             "notes": recipe.notes,
             "dateAdded": firebase.database.ServerValue.TIMESTAMP,
             "dateUpdated": ""
         });
         // clear();
-        swal("Looks yum!", "Added recipe to your box!!", "success");
-        window.location = "recipes.html";
+        swal({title:"Looks yum!", text:"Added recipe to your box!!", icon:"success"})
+        .then((value) =>{
+            window.location = "recipes.html";
+        });
+    }
+});
+
+$("#edit-recipe").on("click", function (event) {
+
+    event.preventDefault();
+    if (recipe.url == undefined) {
+        recipe.url = "";
+    }
+    recipe.name = $("#name").val().trim();
+    recipe.cuisine = $("#cuisines").val();
+    recipe.category = $("#categories").val();
+    var notes = $('#notes');
+    notes.val(JSON.stringify(quill.getContents()));
+    recipe.notes = $("#notes").val();
+    recipe.ingredients = [];
+
+    for (var i = 1; i < ingIndex; i++) {
+        let ingredient = {};
+        ingredient.name = $("#" + "ing" + i + "-name").val();
+        ingredient.quantity = $("#" + "ing" + i + "-quantity").val();
+        console.log(ingredient);
+        recipe.ingredients.push(JSON.stringify(ingredient));
+    }
+
+    if (validate($("#name")) && validate($("#notes"))) {
+        // Code for handling the push
+        database.ref("users/" + id + "/recipes/" + recipe.key).update({
+            "name": recipe.name,
+            "cuisine": recipe.cuisine,
+            "picName": recipe.picName,
+            "pic": recipe.url,
+            "category": recipe.category,
+            "ingredients": recipe.ingredients,
+            "notes": recipe.notes,
+            "dateUpdated": firebase.database.ServerValue.TIMESTAMP,
+            
+        });
+        // clear();
+        swal({title:"Looks yum!", text:"Updated recipe in your box!!", icon:"success"})
+        .then((value) =>{
+            window.location = "recipes.html";
+        });
+        
     }
 });
 
@@ -141,21 +242,22 @@ function loadQuantities(elementId) {
 
 
 
-$(document).ready(function () {
-    //Hiding validation error divs
-    $(".error").hide();
 
+function loadCuisines(){
     database.ref("cuisines").once("value", function (snapshot) {
         snapshot.forEach(function (cuisine) {
-            let option = $("<option>").html(cuisine.val().name).val(cuisine.val().id);
+            let option = $("<option>").text(cuisine.val().name).val(cuisine.val().id);
             $("#cuisines").append(option);
         });
     });
+}
+
+function loadCategories(){
     database.ref("categories").once("value", function (snapshot) {
         snapshot.forEach(function (category) {
-            let option = $("<option>").html(category.val().name).val(category.val().id);
+            let option = $("<option>").text(category.val().name).val(category.val().id);
             $("#categories").append(option);
         });
     });
-});
+}
 
