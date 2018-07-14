@@ -12,14 +12,18 @@ function loadRecipe() {
     recipe.key = params.get("recipeName");
     database.ref("users/" + id + "/recipes/" + recipe.key).once("value", (snapshot) => {
         var recipeDetails = snapshot.val();
+        
         $("#name").val(recipeDetails.name);
-        $("#cuisines").text(recipeDetails.cuisine);
-        $("#categories").text(recipeDetails.category);
+        //$( "select#cuisines option:checked" ).val(recipeDetails.cuisine);
+        $("#cuisines").val(recipeDetails.cuisine);
+        $("#categories").val(recipeDetails.category);
+
         if (recipeDetails.pic != "") {
             $("#recipe-pic-placeholder").hide();
             $("#recipe-pic").show();
             $("#recipe-pic").attr("src", recipeDetails.pic);
             recipe.picName = recipeDetails.picName;
+            recipe.url=recipeDetails.pic;
             if(recipe.picName!=undefined){
                 $("#pic-div").append("<i class='fas fa-trash-alt' id='delete-pic' onclick='deletePic()'></i>");
             }
@@ -46,7 +50,7 @@ function addIng(ingredient) {
     let quantOptions = $("<select>")
         .addClass("form-control quantity")
         .attr("id", name + "-quantity")
-        .html("<option id='' val=''>Please select</option>");
+        .html("<option value=''>Please select</option>");
     ingsdiv.append(txt, quantOptions);
     $("#ing-list").append(ingsdiv);
     loadQuantities(name + "-quantity");
@@ -187,12 +191,15 @@ $("#edit-recipe").on("click", function (event) {
             "category": recipe.category,
             "ingredients": recipe.ingredients,
             "notes": recipe.notes,
-            "dateAdded": firebase.database.ServerValue.TIMESTAMP,
-            "dateUpdated": ""
+            "dateUpdated": firebase.database.ServerValue.TIMESTAMP,
+            
         });
         // clear();
-        swal("Looks yum!", "Added recipe to your box!!", "success");
-        window.location = "recipes.html";
+        swal({title:"Looks yum!", text:"Updated recipe in your box!!", icon:"success"})
+        .then((value) =>{
+            window.location = "recipes.html";
+        });
+        
     }
 });
 
@@ -231,23 +238,21 @@ function loadQuantities(elementId) {
     });
 }
 
-
-
-$(document).ready(function () {
-    //Hiding validation error divs
-
-
+function loadCuisines(){
     database.ref("cuisines").once("value", function (snapshot) {
         snapshot.forEach(function (cuisine) {
-            let option = $("<option>").html(cuisine.val().name).val(cuisine.val().id);
+            let option = $("<option>").text(cuisine.val().name).val(cuisine.val().id);
             $("#cuisines").append(option);
         });
     });
+}
+
+function loadCategories(){
     database.ref("categories").once("value", function (snapshot) {
         snapshot.forEach(function (category) {
-            let option = $("<option>").html(category.val().name).val(category.val().id);
+            let option = $("<option>").text(category.val().name).val(category.val().id);
             $("#categories").append(option);
         });
     });
-});
+}
 
