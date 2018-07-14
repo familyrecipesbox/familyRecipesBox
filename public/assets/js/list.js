@@ -1,5 +1,5 @@
 //global variables
-const id = sessionStorage.getItem("uid");
+const id = sessionStorage.getItem("email");
 
 //function for display recipe list
 function displayRecipesList() {
@@ -11,7 +11,7 @@ function displayRecipesList() {
             const colDiv = $("<div>").addClass("col-md-3");
             const cardDiv = $("<div>").addClass("card mb-3 box-shadow");
             const img = $("<img>").addClass("card-img-top recipe-card");
-          
+
             if (recipeData.pic == "") {
                 img.attr("src", "assets/images/nopic.png");
             } else {
@@ -30,13 +30,21 @@ function displayRecipesList() {
             editBtn.attr("type", "button");
             editBtn.attr("data-name", recipe.key);
             editBtn.text("Edit");
+            const delBtn = $("<button>").addClass("del-btn btn btn-sm btn-outline-secondary");
+            delBtn.attr("type", "button");
+            delBtn.attr("data-name", recipe.key);
+            delBtn.text("Delete");
+            const shareBtn = $("<button>").addClass("share-btn btn btn-sm btn-outline-secondary");
+            shareBtn.attr("type", "button");
+            shareBtn.attr("data-name", recipe.key);
+            shareBtn.text("Share");
             const small = $("<small>").addClass("text-muted");
             const span = $("<span>").addClass("date-added");
             var dateAdded = moment.unix(recipeData.dateAdded);
             //span.text(dateAdded);
             //Append starting from inside out
             small.append(span);
-            btnDiv.append(viewBtn, editBtn);
+            btnDiv.append(viewBtn, editBtn, shareBtn);
             dFlexDiv.append(btnDiv, small);
             cardBodyDiv.append(cardTextP, dFlexDiv);
             cardDiv.append(img, cardBodyDiv);
@@ -56,8 +64,53 @@ $(document).on("click", ".view-btn", function () {
 //Passing the recipe name to the url
 $(document).on("click", ".edit-btn", function () {
     var recipeName = $(this).attr("data-name");
-    //var url = new URL("http://recipe-details.html?recipeName=" + recipeName);
     window.location.href = "edit.html?recipeName=" + recipeName;
+});
+
+$(document).on("click", ".del-btn", function () {
+    var recipeName = $(this).attr("data-name");
+    swal({
+        title: 'Are you sure? Recipe looks good!',
+        text: "You won't be able to revert this!",
+        icon: 'info'
+    }).then((result) => {
+        if (result.value) {
+            database.ref("users/" + id + "/recipes/").child(recipeName).remove().then(() => {
+                swal('It looked good :(', 'Recipe is out of your box!', 'success');
+            });
+        }
+    });
+});
+
+
+//Passing the recipe name to the url
+$(document).on("click", ".share-btn", function () {
+    var recipeName = $(this).attr("data-name");
+    swal("Share to email id :", {
+        content: "input",
+    })
+        .then((value) => {
+            if (value.trim() != "") {
+                let email = value.split("@")[0].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+                if (email.trim() != "") {
+                    database.ref("users/" + email).once("value", (snapshot) => {
+
+                    }).then(function (snapshot) {
+                        if (snapshot.val() != null) {
+                            console.log("Found user in DB");
+                            database.ref("users/" + id + "/recipes/" + recipeName).once("value", (snapshot) => {
+                                database.ref("users/" + value + "/recipes/" + recipeName).set(snapshot.val())
+                                    .then(function () {
+                                        swal("Sweet!", "Your family member or friend has access to the recipe now.", "success");
+                                    });
+                            });
+                        } else {
+                            swal("oops!!", "Friend or family member should login to have access.", "error");
+                        }
+                    });
+                }
+            }
+        });
 });
 
 $("#edit-recipe").on("click", function () {
@@ -75,7 +128,7 @@ function displayRecipeDetail() {
         var recipeDetails = snapshot.val();
         $("#recipe-name").text(recipeDetails.name);
         getCuisineName(recipeDetails.cuisine);
-        getCategoryName(recipeDetails.category);        
+        getCategoryName(recipeDetails.category);
         $(".card-img").attr("src", recipeDetails.pic);
         var tempCont = document.createElement("div");
         (new Quill(tempCont)).setContents(JSON.parse(recipeDetails.notes).ops);
