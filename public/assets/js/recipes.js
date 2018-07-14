@@ -4,7 +4,7 @@ var quill = new Quill('#editor', {
 });
 
 let recipe = {};
-const id = sessionStorage.getItem("uid");
+const id = sessionStorage.getItem("email");
 let ingIndex = 1;
 
 function loadRecipe() {
@@ -154,8 +154,10 @@ $("#add-recipe").on("click", function (event) {
             "dateUpdated": ""
         });
         // clear();
-        swal("Looks yum!", "Added recipe to your box!!", "success");
-        window.location = "recipes.html";
+        swal({title:"Looks yum!", text:"Added recipe to your box!!", icon:"success"})
+        .then((value) =>{
+            window.location = "recipes.html";
+        });
     }
 });
 

@@ -5,8 +5,8 @@ function googleLogin() {
     firebase.auth().signInWithPopup(provider)
         .then(function(result)  {
             const user = result.user;
-            const id = user.uid;
-            sessionStorage.setItem("uid", user.uid);
+            const id = user.email.split("@")[0].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+            sessionStorage.setItem("email", id);
             sessionStorage.setItem("name", user.displayName);
             sessionStorage.setItem("pp", user.photoURL);
             let users = database.ref("users");
@@ -50,7 +50,7 @@ function googleLogin() {
 
 function logout() {
     firebase.auth().signOut().then(function () {
-        const id = sessionStorage.getItem("uid");
+        const id = sessionStorage.getItem("email");
 
 
         database.ref("users/" + id).update({
