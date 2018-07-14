@@ -115,6 +115,22 @@ transition: transform .3s ease,-webkit-transform .3s ease;
 .marketing{
     margin-top:-15px;
 }
+
+.recipe-pic{
+    height: 75%;
+    width: 50%;
+    display: block;
+}
+
+.recipe-card{
+    
+    height: 250px;
+}
+
+.add{
+    color:grey;
+}
+
 @media screen and (max-width: 768px) {
    
     .carousel-caption {

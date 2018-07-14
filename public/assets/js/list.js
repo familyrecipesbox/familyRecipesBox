@@ -11,6 +11,7 @@ function displayRecipesList() {
             const colDiv = $("<div>").addClass("col-md-3");
             const cardDiv = $("<div>").addClass("card mb-3 box-shadow");
             const img = $("<img>").addClass("card-img-top recipe-card");
+          
             if (recipeData.pic == "") {
                 img.attr("src", "assets/images/nopic.png");
             } else {

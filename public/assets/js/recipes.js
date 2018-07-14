@@ -16,8 +16,8 @@ function loadRecipe() {
         $("#name").val(recipeDetails.name);
         //$( "select#cuisines option:checked" ).val(recipeDetails.cuisine);
         $("#cuisines").val(recipeDetails.cuisine);
-
         $("#categories").val(recipeDetails.category);
+
         if (recipeDetails.pic != "") {
             $("#recipe-pic-placeholder").hide();
             $("#recipe-pic").show();
@@ -154,10 +154,8 @@ $("#add-recipe").on("click", function (event) {
             "dateUpdated": ""
         });
         // clear();
-        swal({title:"Looks yum!", text:"Added recipe to your box!!", icon:"success"})
-        .then((value) =>{
-            window.location = "recipes.html";
-        });
+        swal("Looks yum!", "Added recipe to your box!!", "success");
+        window.location = "recipes.html";
     }
 });
 
@@ -239,9 +237,6 @@ function loadQuantities(elementId) {
         });
     });
 }
-
-
-
 
 function loadCuisines(){
     database.ref("cuisines").once("value", function (snapshot) {
