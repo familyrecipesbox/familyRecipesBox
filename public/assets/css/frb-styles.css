@@ -122,10 +122,9 @@ transition: transform .3s ease,-webkit-transform .3s ease;
     display: block;
 }
 
-.recipe-card{
-    
+/* .recipe-card{
     height: 250px;
-}
+} */
 
 .add{
     color:grey;

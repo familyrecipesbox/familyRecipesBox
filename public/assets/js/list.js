@@ -8,7 +8,7 @@ function displayRecipesList() {
             const recipeData = recipe.val();
 
             const recipesList = $('#recipesList');
-            const colDiv = $("<div>").addClass("col-md-3");
+            const colDiv = $("<div>").addClass("col-md-4 order-1");
             const cardDiv = $("<div>").addClass("card mb-3 box-shadow");
             const img = $("<img>").addClass("card-img-top recipe-card");
 
