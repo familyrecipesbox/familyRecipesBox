@@ -234,7 +234,7 @@ function clear() {
 function loadQuantities(elementId) {
     database.ref("quantities").once("value", function (snapshot) {
         snapshot.forEach(function (quantity) {
-            let option = $("<option>").html(quantity.val().name).val(quantity.val().id);
+            let option = $("<option>").text(quantity.val().name).val(quantity.val().id);
             $("#" + elementId).append(option);
         });
     });
