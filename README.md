@@ -1,9 +1,10 @@
 # Family Recipes Box
 
-## Title : Family Recipes Box 
-
-Description : This app is for preserving all family traditional and favorite recipes. Parents or grandparents or family can later use it to share to their kids. It is very common for most youngsters to miss home made food.  At some point in our early days out of home, we tend to call up and ask for recipes and parents are worried about their kids eating healthy food. 
-This app could be useful to everyone :)
+This app is for preserving all family traditional and favorite recipes. Parents or grandparents or family members can later use it to share to their kids. It is very common for most youngsters to miss home made food.  At some point in our early days out of home, we tend to call up and ask for recipes and parents are worried about their kids eating healthy food. 
+Anyone can use this app in 3 simple steps :
+* Capture - Take pictures, videos and notes while cooking your favorite recipes.
+* Save - Add to your family recipes box.
+* Share - Share with your family and friends :)
 
 ## Environment: 
 
@@ -18,52 +19,4 @@ This app could be useful to everyone :)
 * quilljs - Rich Text editor
 * Momentjs
 * fontawesome.css - icons
-
-We are planning on doing the below user stories for this project. 
-
-- As a user I want to be able to login using google login.
-- As a user I want to add a recipe by adding text and pictures.
-- As a user I want to view the recipe.
-- As a user I want to edit/update recipe.
-- As a user I want to delete a recipe.
-- As a user I want to view the list of all the recipes.
-- As a user I want to see nearby stores to shop for recipes using google maps api.
-
-## Add/ Edit a recipe
-- User will be given choices for cuisines, categories, quantities, if not listed other.
-
-### Cuisines
-* Chinese
-* Indian
-* Italian
-* Thai
-* Asian
-* Mexican
-* American
-* Middle Eastern
-* African
-more.. 
-
-### Categories
-* Appetizer /Snack
-* Breakfast
-* Desserts
-* Breads
-* Salads
-* Smoothies
-* Juices
-* Soups/ Stews
-* Main Dishes
-* Pasta
-* BBQ/ Grilling
-more..
-
-### Quantities
-* lbs
-* ts
-* tbsp
-* g
-* kg
-more..
-
-
+* jQuery  

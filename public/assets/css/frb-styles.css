@@ -98,6 +98,10 @@ transition: transform .3s ease,-webkit-transform .3s ease;
     width: 100%;
 }
 
+.upload{
+    width:100%;
+}
+
 #editor{
     height: 250px;
 }
@@ -106,9 +110,13 @@ transition: transform .3s ease,-webkit-transform .3s ease;
     margin-top: 10px;
 }
 
+.ing-name{
+    width: 50%;
+}
+
 .quantity{
     display: inline-block;
-    width: 30%;
+    width: 35%;
     margin:5px;
 }
 
@@ -118,14 +126,17 @@ transition: transform .3s ease,-webkit-transform .3s ease;
 
 .recipe-pic{
     height: 75%;
-    width: 50%;
+    width: 100%;
     display: block;
 }
 
-/* .recipe-card{
-    height: 250px;
-} */
+.ing-list{
+    margin-top:20px;
+}
 
+.top-rt-div{
+    margin-top:40px;
+}
 .add{
     color:grey;
 }
@@ -139,7 +150,8 @@ transition: transform .3s ease,-webkit-transform .3s ease;
     .navbar-expand-md {
         justify-content: space-between;
     }
-       
+
+
 }
 
 
@@ -200,6 +212,10 @@ transition: transform .3s ease,-webkit-transform .3s ease;
             .carousel-indicators li{
                 height: 10px;
                 width: 10px;
+            }
+
+            .recipe-pic{
+                width: 100%;
             }
         }
       

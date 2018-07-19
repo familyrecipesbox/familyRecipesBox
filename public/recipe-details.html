@@ -12,10 +12,10 @@
     <title>Family Recipes Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/frb-styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/lib/use.fontawesome-all.css">
+    <link href="assets/css/lib/roboto-font.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="assets/css/recipes.css">
 
     <!-- favicons -->
@@ -114,11 +114,11 @@
                                 <button type="button" class="btn btn-outline-success">Cuisine:
                                     <span id="cuisine"></span>
                                 </button>
-                                <button type="button" class="btn btn-outline-warning">Category
+                                <button type="button" class="btn btn-outline-warning">Category:
                                     <span id="category"></span>
                                 </button>
                             </div>
-                            <img class="card-img recipe-img" src="https://images-gmi-pmc.edge-generalmills.com/c41ffe09-8520-4d29-9b4d-c1d63da3fae6.jpg">
+                            <img class="card-img recipe-img" src="">
                         </div>
                     </div>
                     <!-- row -->
@@ -128,9 +128,7 @@
                             <h4>Recipe Instructions</h4>
                             <div class="card">
                                 <div id="notes" class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit semper nisl vitae tempor. Curabitur dictum
-                                    vestibulum ex vel fringilla. Curabitur tincidunt ex ut mauris aliquet congue. Vestibulum
-                                    vestibulum eros neque, non iaculis metus malesuada a. Sed nec turpis quam.
+                                    
                                 </div>
                             </div>
                         </div>
@@ -149,12 +147,9 @@
             </div>
           </footer>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+          <script src="assets/js/lib/jquery.js"></script>
+          <script src="assets/js/lib/bootstrap.min.js"></script>
+          <script src="assets/js/lib/popper.min.js"></script>
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
 
@@ -167,13 +162,9 @@
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-storage.js"></script>
 
     <script src="assets/js/firebase-config.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <script src="assets/js/frb-login.js"></script>
-    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
-    <!-- Temporary Image Holders -->
     <script src="assets/js/holder.min.js"></script>
-
+    <script src="assets/js/lib/quill.js"></script>
     <script src="assets/js/list.js"></script>
     <script>
         $(document).ready(function () {

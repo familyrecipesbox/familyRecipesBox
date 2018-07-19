@@ -1,6 +1,13 @@
 {
   "rules": {
     ".read": true,
-    ".write": true
+    ".write": true,
+    
+    "users": {
+      "$user": {
+        ".read": "$user === auth.email.replace('@gmail.com', '').replace('.', '')",
+        ".write":"$user === auth.email.replace('@gmail.com', '').replace('.', '')"
+      }
+    }
   }
 }
