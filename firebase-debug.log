@@ -1,32 +1,85 @@
-[debug] [2018-07-19T09:30:37.100Z] ----------------------------------------------------------------------
-[debug] [2018-07-19T09:30:37.107Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-19T09:30:37.108Z] CLI Version:   3.19.1
-[debug] [2018-07-19T09:30:37.108Z] Platform:      darwin
-[debug] [2018-07-19T09:30:37.108Z] Node Version:  v6.11.3
-[debug] [2018-07-19T09:30:37.109Z] Time:          Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
-[debug] [2018-07-19T09:30:37.109Z] ----------------------------------------------------------------------
+[debug] [2018-07-19T10:01:40.022Z] ----------------------------------------------------------------------
+[debug] [2018-07-19T10:01:40.027Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-07-19T10:01:40.028Z] CLI Version:   3.19.1
+[debug] [2018-07-19T10:01:40.028Z] Platform:      darwin
+[debug] [2018-07-19T10:01:40.028Z] Node Version:  v6.11.3
+[debug] [2018-07-19T10:01:40.029Z] Time:          Thu Jul 19 2018 03:01:40 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:40.029Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-07-19T09:30:37.148Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-19T09:30:37.148Z] > authorizing via signed-in user
-[debug] [2018-07-19T09:30:37.153Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
+[debug] [2018-07-19T10:01:40.059Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-19T10:01:40.059Z] > authorizing via signed-in user
+[debug] [2018-07-19T10:01:40.063Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-19T10:01:40.063Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/1iZ9fSNlxW959kpOkcObbfNR_RzYzeZZdsdwWVOW9eQ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu Jul 19 2018 03:01:40 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:40.256Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T10:01:40.285Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
   
- Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
-[debug] [2018-07-19T09:30:37.583Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-19T09:30:37.585Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
+ Thu Jul 19 2018 03:01:40 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:40.690Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T10:01:40.693Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
   
- Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
-[debug] [2018-07-19T09:30:38.098Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-19T09:30:38.099Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/frbox-95742  
-  
- Thu Jul 19 2018 02:30:38 GMT-0700 (PDT)
-[debug] [2018-07-19T09:30:38.436Z] <<< HTTP RESPONSE 200
+ Thu Jul 19 2018 03:01:40 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:41.043Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Serving from '/Users/maryregeenab/MaryWork/familyRecipesBox'...
+[info] === Deploying to 'frbox-95742'...
 [info] 
-[debug] [2018-07-19T09:30:38.440Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/631164592713/clients/_:getWebAppConfig  
+[info] i  deploying database, storage, firestore, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-07-19T10:01:41.512Z] >>> HTTP REQUEST PUT https://frbox-95742.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true,
+    
+    "users": {
+      "$user": {
+        ".read": "$user === auth.email.replace('@gmail.com', '').replace('.', '')",
+        ".write":"$user === auth.email.replace('@gmail.com', '').replace('.', '')"
+      }
+    }
+  }
+} 
+ Thu Jul 19 2018 03:01:41 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:41.877Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database frbox-95742 is valid
+[debug] [2018-07-19T10:01:41.880Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/frbox-95742  
   
- Thu Jul 19 2018 02:30:38 GMT-0700 (PDT)
-[debug] [2018-07-19T09:30:38.745Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5000
-
+ Thu Jul 19 2018 03:01:41 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:42.534Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-07-19T10:01:42.539Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/frbox-95742:test  
+ { source: { files: [ [Object] ] } } 
+ Thu Jul 19 2018 03:01:42 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:42.986Z] <<< HTTP RESPONSE 200
+[info] ✔  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2018-07-19T10:01:42.994Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/frbox-95742:test  
+ { source: { files: [ [Object] ] } } 
+ Thu Jul 19 2018 03:01:42 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:43.353Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-07-19T10:01:43.359Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/frbox-95742/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Thu Jul 19 2018 03:01:43 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:43.968Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T10:01:43.969Z] [rules] created ruleset projects/frbox-95742/rulesets/5a425ffd-0d2d-4493-8ae8-6bc89d6b03d3
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2018-07-19T10:01:43.971Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/frbox-95742/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Thu Jul 19 2018 03:01:43 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:43.981Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/frbox-95742/databases/(default)/indexes  
+  
+ Thu Jul 19 2018 03:01:43 GMT-0700 (PDT)
+[debug] [2018-07-19T10:01:44.581Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T10:01:44.581Z] [rules] created ruleset projects/frbox-95742/rulesets/3d0899bf-f5eb-4318-bec1-163a3317deee
+[debug] [2018-07-19T10:01:44.583Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing public directory for upload...
+[debug] [2018-07-19T10:01:51.335Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/frbox-95742/uploads/-LHlyj8fCjBDCNnEzXSH?fileCount=118&message=  
+  
+ Thu Jul 19 2018 03:01:51 GMT-0700 (PDT)
