@@ -3,7 +3,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     let app = firebase.app();
-    console.log(app);
+    //console.log(app);
     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
     // // The Firebase SDK is initialized and available here!
     //

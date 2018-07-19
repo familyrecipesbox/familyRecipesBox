@@ -31,7 +31,7 @@ function googleLogin() {
                         "logoutTime": ""
                     });
                 }
-                console.log(user);
+               // console.log(user);
                 window.location = 'recipes.html';
             });
 
