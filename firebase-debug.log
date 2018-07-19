@@ -1,73 +1,32 @@
-[debug] [2018-07-17T05:24:04.694Z] ----------------------------------------------------------------------
-[debug] [2018-07-17T05:24:04.700Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-17T05:24:04.700Z] CLI Version:   3.19.1
-[debug] [2018-07-17T05:24:04.701Z] Platform:      darwin
-[debug] [2018-07-17T05:24:04.701Z] Node Version:  v6.11.3
-[debug] [2018-07-17T05:24:04.701Z] Time:          Mon Jul 16 2018 22:24:04 GMT-0700 (PDT)
-[debug] [2018-07-17T05:24:04.702Z] ----------------------------------------------------------------------
+[debug] [2018-07-19T09:30:37.100Z] ----------------------------------------------------------------------
+[debug] [2018-07-19T09:30:37.107Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-07-19T09:30:37.108Z] CLI Version:   3.19.1
+[debug] [2018-07-19T09:30:37.108Z] Platform:      darwin
+[debug] [2018-07-19T09:30:37.108Z] Node Version:  v6.11.3
+[debug] [2018-07-19T09:30:37.109Z] Time:          Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
+[debug] [2018-07-19T09:30:37.109Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-07-17T05:24:04.733Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-17T05:24:04.733Z] > authorizing via signed-in user
-[debug] [2018-07-17T05:24:04.736Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
+[debug] [2018-07-19T09:30:37.148Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-19T09:30:37.148Z] > authorizing via signed-in user
+[debug] [2018-07-19T09:30:37.153Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
   
- Mon Jul 16 2018 22:24:04 GMT-0700 (PDT)
-[debug] [2018-07-17T05:24:05.150Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-17T05:24:05.152Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
+ Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
+[debug] [2018-07-19T09:30:37.583Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T09:30:37.585Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
   
- Mon Jul 16 2018 22:24:05 GMT-0700 (PDT)
-[debug] [2018-07-17T05:24:05.537Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-17T05:24:05.539Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/frbox-95742  
+ Thu Jul 19 2018 02:30:37 GMT-0700 (PDT)
+[debug] [2018-07-19T09:30:38.098Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-19T09:30:38.099Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/frbox-95742  
   
- Mon Jul 16 2018 22:24:05 GMT-0700 (PDT)
-[debug] [2018-07-17T05:24:06.156Z] <<< HTTP RESPONSE 200
+ Thu Jul 19 2018 02:30:38 GMT-0700 (PDT)
+[debug] [2018-07-19T09:30:38.436Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/maryregeenab/MaryWork/familyRecipesBox'...
 [info] 
-[debug] [2018-07-17T05:24:06.159Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/631164592713/clients/_:getWebAppConfig  
+[debug] [2018-07-19T09:30:38.440Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/631164592713/clients/_:getWebAppConfig  
   
- Mon Jul 16 2018 22:24:06 GMT-0700 (PDT)
-[debug] [2018-07-17T05:24:06.593Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-18T07:09:43.987Z] ----------------------------------------------------------------------
-[debug] [2018-07-18T07:09:43.993Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-18T07:09:43.994Z] CLI Version:   3.19.1
-[debug] [2018-07-18T07:09:43.994Z] Platform:      darwin
-[debug] [2018-07-18T07:09:43.994Z] Node Version:  v6.11.3
-[debug] [2018-07-18T07:09:43.995Z] Time:          Wed Jul 18 2018 00:09:43 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:43.995Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-18T07:09:44.033Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-18T07:09:44.033Z] > authorizing via signed-in user
-[debug] [2018-07-18T07:09:44.036Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-18T07:09:44.036Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/1iZ9fSNlxW959kpOkcObbfNR_RzYzeZZdsdwWVOW9eQ',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Wed Jul 18 2018 00:09:44 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:44.231Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-18T07:09:44.260Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frbox-95742  
-  
- Wed Jul 18 2018 00:09:44 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:44.730Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-18T07:09:44.732Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frbox-95742/tokens  
-  
- Wed Jul 18 2018 00:09:44 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:45.108Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-18T07:09:45.110Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/frbox-95742  
-  
- Wed Jul 18 2018 00:09:45 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:45.478Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/Users/maryregeenab/MaryWork/familyRecipesBox'...
-[info] 
-[debug] [2018-07-18T07:09:45.483Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/631164592713/clients/_:getWebAppConfig  
-  
- Wed Jul 18 2018 00:09:45 GMT-0700 (PDT)
-[debug] [2018-07-18T07:09:45.936Z] <<< HTTP RESPONSE 200
+ Thu Jul 19 2018 02:30:38 GMT-0700 (PDT)
+[debug] [2018-07-19T09:30:38.745Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 

@@ -8,8 +8,7 @@ const id = sessionStorage.getItem("email");
 let ingIndex = 1;
 
 function loadRecipe() {
-    $("#pic").hide();
-    $("#uploader").hide();
+   
     let params = (new URL(document.location)).searchParams;
     recipe.key = params.get("recipeName");
     database.ref("users/" + id + "/recipes/" + recipe.key).once("value", (snapshot) => {
@@ -19,6 +18,8 @@ function loadRecipe() {
             $("#recipe-pic-placeholder").hide();
             $("#recipe-pic").show();
             $("#recipe-pic").attr("src", recipeDetails.pic);
+            $("#pic").hide();
+            $("#uploader").hide();
             recipe.picName = recipeDetails.picName;
             recipe.url=recipeDetails.pic;
             if(recipe.picName!=undefined){
@@ -104,9 +105,11 @@ function uploadPic() {
             $("#recipe-pic").attr("src", recipe.url);
             if(!$("#delete-pic").attr('class')){
                 $("#pic-div").append("<i class='fas fa-trash-alt' id='delete-pic' onclick='deletePic()'></i>");
-                $("#pic").hide();
-                $("#uploader").hide();
+            }else{
+                $("#delete-pic").show();
             }
+            $("#pic").hide();
+            $("#uploader").hide();
             //console.log('File available at', downloadURL);
         });
     });
@@ -123,6 +126,8 @@ function deletePic() {
             swal("Uh-oh wasn't that pretty..", "Removed recipe pic. Capture the best!", "success");
             $("#pic").show();
             $("#uploader").show();
+            recipe.url="";
+            recipe.picName="";
         }).catch(function (error) {
             // Uh-oh, an error occurred!
         });
