@@ -140,6 +140,9 @@ $("#add-recipe").on("click", function (event) {
     if (recipe.url == undefined) {
         recipe.url = "";
     }
+    if (recipe.picName == undefined) {
+        recipe.picName = "";
+    }
     recipe.name = $("#name").val().trim();
     recipe.cuisine = $("#cuisines").val();
     recipe.category = $("#categories").val();
@@ -182,6 +185,9 @@ $("#edit-recipe").on("click", function (event) {
     event.preventDefault();
     if (recipe.url == undefined) {
         recipe.url = "";
+    }
+    if (recipe.picName == undefined) {
+        recipe.picName = "";
     }
     recipe.name = $("#name").val().trim();
     recipe.cuisine = $("#cuisines").val();
