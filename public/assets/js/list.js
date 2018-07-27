@@ -141,7 +141,7 @@ function displayRecipeDetail() {
     database.ref("users/" + id + "/recipes/" + query).once("value", (snapshot) => {
 
         var recipeDetails = snapshot.val();
-        if ((recipeDetails.shared != undefined && !recipeDetails.shared)||(recipeDetails.sharedBy == undefined)) {
+        if (recipeDetails.shared == undefined && recipeDetails.sharedBy == undefined) {
             $("#edit-recipe").attr("data-key", query);
         }else{
             $("#edit-recipe").hide();
