@@ -13,7 +13,7 @@ function loadRecipe() {
     recipe.key = params.get("recipeName");
     database.ref("users/" + id + "/recipes/" + recipe.key).once("value", (snapshot) => {
         var recipeDetails = snapshot.val();
-
+        
         if (recipeDetails.pic != "") {
             $("#recipe-pic-placeholder").hide();
             $("#recipe-pic").show();
@@ -46,22 +46,32 @@ function addIng(ingredient) {
     let name = "ing" + ingIndex;
     let ingsdiv = $("<div>")
         .addClass("ings");
-    let txt = $("<input>")
+    let ingQuant = $("<input>")
         .attr("type", "text")
-        .attr("id", name + "-name")
-        .attr("placeholder","Ingrediant")
+        .attr("id", name + "-quantity")
+        .attr("placeholder","Quantity")
         .addClass("ing-name");
     if (ingredient) {
-        txt.val(ingredient.name);
+        ingQuant.val(ingredient.quantity);
     }
+    
     let quantOptions = $("<select>")
         .addClass("form-control quantity")
-        .attr("id", name + "-quantity")
+        .attr("id", name + "-measure")
         .html($("#measurements").html());
-    ingsdiv.append(txt, quantOptions);
+    
+        let ingTxt = $("<input>")
+        .attr("type", "text")
+        .attr("id", name + "-name")
+        .attr("placeholder","Ingredient")
+        .addClass("ing-name");
+    if (ingredient) {
+        ingTxt.val(ingredient.name);
+    }
+    ingsdiv.append(ingQuant, quantOptions,ingTxt);
     $("#ing-list").append(ingsdiv);
     if (ingredient) {
-        $("#" + name + "-quantity").val(ingredient.quantity);
+        $("#" + name + "-measure").val(ingredient.measurement);
     }
     ingIndex++;
 }
@@ -153,8 +163,10 @@ $("#add-recipe").on("click", function (event) {
 
     for (var i = 1; i < ingIndex; i++) {
         let ingredient = {};
-        ingredient.name = $("#" + "ing" + i + "-name").val();
         ingredient.quantity = $("#" + "ing" + i + "-quantity").val();
+        ingredient.measurement = $("#" + "ing" + i + "-measure").val();
+        ingredient.name = $("#" + "ing" + i + "-name").val();
+
         //console.log(ingredient);
         recipe.ingredients.push(JSON.stringify(ingredient));
     }
@@ -199,8 +211,9 @@ $("#edit-recipe").on("click", function (event) {
 
     for (var i = 1; i < ingIndex; i++) {
         let ingredient = {};
-        ingredient.name = $("#" + "ing" + i + "-name").val();
         ingredient.quantity = $("#" + "ing" + i + "-quantity").val();
+        ingredient.measurement = $("#" + "ing" + i + "-measure").val();
+        ingredient.name = $("#" + "ing" + i + "-name").val();
         //console.log(ingredient);
         recipe.ingredients.push(JSON.stringify(ingredient));
     }
@@ -215,7 +228,7 @@ $("#edit-recipe").on("click", function (event) {
             "category": recipe.category,
             "ingredients": recipe.ingredients,
             "notes": recipe.notes,
-            "dateUpdated": firebase.database.ServerValue.TIMESTAMP,
+            "dateUpdated": firebase.database.ServerValue.TIMESTAMP
             
         });
         // clear();
