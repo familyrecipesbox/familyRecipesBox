@@ -6,7 +6,10 @@ function displayRecipesList() {
     database.ref("users/" + id + "/recipes").once("value", (snapshot) => {
         snapshot.forEach((recipe) => {
             const recipeData = recipe.val();
-            const recipeShared = recipeData.shared;
+            let recipeShared = false;
+            if ((recipeData.shared != undefined && recipeData.shared)||(recipeData.sharedBy != undefined)) {
+                recipeShared=true;
+            }
             const recipesList = $('#recipesList');
             const colDiv = $("<div>").addClass("col-md-4 order-1");
             const cardDiv = $("<div>").addClass("card mb-3 box-shadow");
@@ -44,7 +47,7 @@ function displayRecipesList() {
             //span.text(dateAdded);
             //Append starting from inside out
             small.append(span);
-            if (recipeShared != undefined && recipeShared) {
+            if(recipeShared){
                 btnDiv.append(viewBtn, shareBtn);
             } else {
                 btnDiv.append(viewBtn, editBtn, shareBtn);
@@ -138,7 +141,7 @@ function displayRecipeDetail() {
     database.ref("users/" + id + "/recipes/" + query).once("value", (snapshot) => {
 
         var recipeDetails = snapshot.val();
-        if (recipeDetails.shared != undefined && !recipeDetails.shared) {
+        if ((recipeDetails.shared != undefined && !recipeDetails.shared)||(recipeDetails.sharedBy == undefined)) {
             $("#edit-recipe").attr("data-key", query);
         }else{
             $("#edit-recipe").hide();

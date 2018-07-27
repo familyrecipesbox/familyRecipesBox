@@ -172,8 +172,9 @@ $("#add-recipe").on("click", function (event) {
     }
 
     if (validate($("#name"))) {
+        let key=recipe.name.replace(" ", "")+new Date().getTime();
         // Code for handling the push
-        database.ref("users/" + id + "/recipes/" + recipe.name.replace(" ", "")).set({
+        database.ref("users/" + id + "/recipes/" + key).set({
             "name": recipe.name,
             "cuisine": recipe.cuisine,
             "picName": recipe.picName,

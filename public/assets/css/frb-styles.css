@@ -111,7 +111,7 @@ transition: transform .3s ease,-webkit-transform .3s ease;
 }
 
 .ing-name{
-    width: 50%;
+    width: 20%;
 }
 
 .quantity{
@@ -194,6 +194,9 @@ transition: transform .3s ease,-webkit-transform .3s ease;
             height: 10px;
             width: 10px;
         }
+        .ing-name{
+            width: 35%;
+        }
     }
 
     @media screen and (max-width: 400px) {
@@ -216,6 +219,9 @@ transition: transform .3s ease,-webkit-transform .3s ease;
 
             .recipe-pic{
                 width: 100%;
+            }
+            .ing-name{
+                width: 35%;
             }
         }
       
