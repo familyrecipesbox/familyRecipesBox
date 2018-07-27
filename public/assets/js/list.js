@@ -6,7 +6,7 @@ function displayRecipesList() {
     database.ref("users/" + id + "/recipes").once("value", (snapshot) => {
         snapshot.forEach((recipe) => {
             const recipeData = recipe.val();
-
+            const recipeShared = recipeData.shared;
             const recipesList = $('#recipesList');
             const colDiv = $("<div>").addClass("col-md-4 order-1");
             const cardDiv = $("<div>").addClass("card mb-3 box-shadow");
@@ -44,7 +44,11 @@ function displayRecipesList() {
             //span.text(dateAdded);
             //Append starting from inside out
             small.append(span);
-            btnDiv.append(viewBtn, editBtn, shareBtn);
+            if (recipeShared != undefined && recipeShared) {
+                btnDiv.append(viewBtn, shareBtn);
+            } else {
+                btnDiv.append(viewBtn, editBtn, shareBtn);
+            }
             dFlexDiv.append(btnDiv, small);
             cardBodyDiv.append(cardTextP, dFlexDiv);
             cardDiv.append(img, cardBodyDiv);
@@ -101,7 +105,15 @@ $(document).on("click", ".share-btn", function () {
                             database.ref("users/" + id + "/recipes/" + recipeName).once("value", (snapshot) => {
                                 database.ref("users/" + email + "/recipes/" + recipeName).set(snapshot.val())
                                     .then(function () {
-                                        swal("Sweet!", "Your family member or friend has access to the recipe now.", "success");
+                                        swal("Sweet!", "Your family member or friend can view the recipe now.", "success");
+                                        database.ref("users/" + id + "/recipes/" + recipeName).update({
+                                            "shared": true,
+                                            "dateUpdated": firebase.database.ServerValue.TIMESTAMP
+                                        });
+                                        database.ref("users/" + email + "/recipes/" + recipeName).update({
+                                            "sharedBy": id,
+                                            "dateUpdated": firebase.database.ServerValue.TIMESTAMP
+                                        });
                                     });
                             });
                         } else {
@@ -124,8 +136,13 @@ function displayRecipeDetail() {
     let params = (new URL(document.location)).searchParams;
     let query = params.get("recipeName");
     database.ref("users/" + id + "/recipes/" + query).once("value", (snapshot) => {
-        $("#edit-recipe").attr("data-key", query);
+
         var recipeDetails = snapshot.val();
+        if (recipeDetails.shared != undefined && !recipeDetails.shared) {
+            $("#edit-recipe").attr("data-key", query);
+        }else{
+            $("#edit-recipe").hide();
+        }
         $("#recipe-name").text(recipeDetails.name);
         getCuisineName(recipeDetails.cuisine);
         getCategoryName(recipeDetails.category);
@@ -133,18 +150,19 @@ function displayRecipeDetail() {
         var tempCont = document.createElement("div");
         (new Quill(tempCont)).setContents(JSON.parse(recipeDetails.notes).ops);
         $("#notes").html(tempCont.getElementsByClassName("ql-editor")[0].innerHTML);
-
+        let i = 0;
         recipeDetails.ingredients.forEach(ingredient => {
             var ingredientList = $(".ingredients-list");
             var li = $("<li>").addClass("list-group-item");
             var p = $("<p>");
-            var spanIngredient = $("<span>").attr("id", "ingredient");
+            var spanIngredient = $("<span>").attr("id", "ingredient" + i);
             var ing = JSON.parse(ingredient);
-            spanIngredient.text(ing.name + " " + ing.quantity);
+            getMeasurementName("ingredient" + i, ing.quantity, ing.measurement, ing.name);
 
             p.append(spanIngredient);
             li.append(p);
             ingredientList.append(li);
+            i++;
         });
     });
 };
@@ -161,6 +179,14 @@ function getCategoryName(categoryId) {
     if (categoryId != "") {
         database.ref("categories/" + categoryId).once("value", (snapshot) => {
             $("#category").text(snapshot.val().name);
+        });
+    }
+}
+
+function getMeasurementName(elementId, quantity, measurementId, name) {
+    if (measurementId != "") {
+        database.ref("quantities/" + measurementId).once("value", (snapshot) => {
+            $("#" + elementId).text(quantity + " " + snapshot.val().name + " " + name);
         });
     }
 }
